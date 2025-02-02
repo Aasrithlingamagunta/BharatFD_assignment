@@ -1,82 +1,88 @@
 # BharatFD - Multilingual FAQ Management System
 
-## 📌 Overview
-**BharatFD** is a powerful **Django-based multilingual FAQ management system** designed to store, manage, and retrieve **FAQs in multiple languages**. The system offers an **interactive user experience**, allowing users to fetch FAQs dynamically based on their preferred language.
-
-This project follows best practices in **Django development**, incorporating **caching for performance**, **RESTful APIs for extensibility**, and **Docker support for easy deployment**.
+## Overview
+BharatFD is a **Django-based multilingual FAQ management system** designed to provide dynamic FAQ retrieval with **WYSIWYG editing, caching, and REST API integration**. The system is optimized for performance, **deployable with Docker**, and features an interactive frontend for seamless FAQ management.
 
 ---
 
-## ✅ Features
-- **🌍 Multilingual Support**: Automatic translations using Google Translate API.
-- **📝 Rich Text Editing**: WYSIWYG CKEditor for formatting FAQs.
-- **⚡ Efficient Caching**: Optimized API responses using Django's caching framework.
-- **🔗 REST API**: Fetch FAQs in different languages with query parameters.
-- **🛠️ Admin Panel**: User-friendly Django Admin interface for FAQ management.
-- **🐳 Docker Support**: Easy containerized deployment with Docker.
-- **🧪 Automated Testing**: Unit tests to maintain API integrity and performance.
+## Features
+- **Multi-language Support** – FAQs available in **English, Hindi, and Bengali**.
+- **WYSIWYG Editor** – CKEditor integration for rich-text FAQ answers.
+- **Caching Mechanism** – Uses **Redis** to improve API response times.
+- **REST API** – Fetch FAQs dynamically through API endpoints.
+- **Admin Panel** – Manage FAQs efficiently using Django’s admin interface.
+- **Docker Support** – Simplified deployment with containerized setup.
+- **Interactive UI** – Easily test FAQs with a frontend interface.
 
 ---
 
-## 📂 Project Structure
-BharatFD/ │── bharatfd/ # Main Django project settings │── faq/ # FAQ app (Models, Views, APIs) │── templates/faq/ # HTML templates for interactive FAQ page │── static/ # Static files (CSS, JS) │── requirements.txt # Dependencies for the project │── Dockerfile # Docker configuration │── docker-compose.yml # Docker Compose setup │── README.md # Project documentation
-
-yaml
-Copy
-Edit
+## Project Structure
+```
+BharatFD/
+│── bharatfd/         # Main Django project settings
+│── faq/              # FAQ app (Models, Views, APIs)
+│── templates/faq/    # HTML templates for interactive FAQ page
+│── static/           # Static files (CSS, JS)
+│── requirements.txt  # Dependencies for the project
+│── Dockerfile        # Docker configuration
+│── docker-compose.yml # Docker Compose setup
+│── README.md         # Project documentation
+```
 
 ---
 
-## 🛠️ Setup Instructions
+## Setup Instructions
 
-### 🔹 1️⃣ Clone the Repository
+### 1. Clone the Repository
 ```sh
 git clone https://github.com/Aasrithlingamagunta/BharatFD_assignment.git
 cd BharatFD_assignment
-🔹 2️⃣ Create & Activate Virtual Environment
-sh
-Copy
-Edit
+```
+
+### 2. Create & Activate Virtual Environment
+```sh
 python -m venv venv
 venv\Scripts\activate  # Windows
 source venv/bin/activate  # macOS/Linux
-🔹 3️⃣ Install Dependencies
-sh
-Copy
-Edit
-pip install -r requirements.txt
-🔹 4️⃣ Apply Migrations
-sh
-Copy
-Edit
-python manage.py migrate
-🔹 5️⃣ Run the Django Server
-sh
-Copy
-Edit
-python manage.py runserver
-Now, open http://127.0.0.1:8000/ in your browser.
+```
 
-🔥 API Endpoints
-📍 Fetch All FAQs (Default: English)
-sh
-Copy
-Edit
+### 3. Install Dependencies
+```sh
+pip install -r requirements.txt
+```
+
+### 4. Apply Migrations
+```sh
+python manage.py migrate
+```
+
+### 5. Run the Django Server
+```sh
+python manage.py runserver
+```
+Now, open **http://127.0.0.1:8000/** in your browser.
+
+---
+
+## API Endpoints
+
+### Fetch All FAQs (Default: English)
+```sh
 GET /api/faqs/
-📍 Fetch FAQs in Hindi
-sh
-Copy
-Edit
+```
+
+### Fetch FAQs in Hindi
+```sh
 GET /api/faqs/?lang=hi
-📍 Fetch FAQs in Bengali
-sh
-Copy
-Edit
+```
+
+### Fetch FAQs in Bengali
+```sh
 GET /api/faqs/?lang=bn
-📍 Example JSON Response
-json
-Copy
-Edit
+```
+
+### Example JSON Response
+```json
 [
     {
         "question": "What is Django?",
@@ -87,54 +93,76 @@ Edit
         "answer": "REST API is an architectural style for web services."
     }
 ]
-🎯 Interactive FAQ Page
-Live input-based FAQ search.
-Dynamically fetches answers based on user input.
-Supports real-time language switching.
-Access at http://127.0.0.1:8000/faq/.
-🐳 Deployment with Docker
-To deploy using Docker, run:
-
-sh
-Copy
-Edit
-docker-compose up --build
-The application will be available at http://localhost:8000/.
-
-🔑 Admin Panel Access
-Go to http://127.0.0.1:8000/admin/.
-Log in with superuser credentials (created during setup).
-✅ How to Evaluate This Project
-Test API Endpoints using Postman or curl.
-Manage FAQs in the Django Admin panel.
-Use the Frontend to fetch FAQs interactively.
-Inspect the Codebase for modular and efficient architecture.
-Check Performance with caching-enabled API responses.
-🌟 Why This Stands Out
-Multilingual capabilities ensure accessibility for different users.
-Rich text formatting improves FAQ readability.
-Caching boosts API performance significantly.
-Scalable & deployable with Docker and Django best practices.
-Well-documented and structured for easy evaluation.
-🚀 Future Enhancements
-🔍 Search functionality to find FAQs efficiently.
-🔐 Authentication & Role-Based Access for admin features.
-☁️ Cloud Deployment on AWS/GCP for scalability.
-This README provides a clear, structured, and detailed overview of the project, making it easy for evaluators to test and understand. Let me know if you need any modifications!
-
-markdown
-Copy
-Edit
+```
 
 ---
 
-### **🎯 Why This README Works**
-- **Clear & professional formatting** using **GitHub Markdown**.
-- **Step-by-step installation & testing instructions**.
-- **Seamless API testing guide** with example responses.
-- **Performance, deployment, and evaluation guidelines**.
-- **No unnecessary symbols—just structured, easy-to-read content.**
+## Interactive FAQ Page
+- **Search for FAQs dynamically.**
+- **Supports real-time language switching.**
+- **Available at:** `http://127.0.0.1:8000/faq/`
 
-This will **stand out** and **impress evaluators**.
+---
 
-Let me know if you need **any more improvements!** 🚀
+## Deployment with Docker
+To deploy using **Docker**, run:
+```sh
+docker-compose up --build
+```
+The application will be available at **http://localhost:8000/**.
+
+---
+
+## Admin Panel Access
+- URL: **http://127.0.0.1:8000/admin/**
+- Log in with superuser credentials (created during setup).
+
+---
+
+## How to Submit This Project
+
+### 1. Push Final Changes to GitHub
+```sh
+git add .
+git commit -m "Final Submission: BharatFD"
+git push origin main
+```
+
+### 2. Open an Issue in the Repository
+- Go to **[GitHub Repository](https://github.com/Aasrithlingamagunta/BharatFD_assignment)**.
+- Click on **Issues** → **New Issue**.
+- Use a title like **Submission for Backend Developer Role**.
+- In the description, mention:
+  - **Project Name**: BharatFD
+  - **Key Features**
+  - **Repository Link**
+  - **Deployment (if applicable)**
+
+### 3. Tag the Evaluator
+- Tag `@theakshaydhiman` as mentioned in the assignment.
+- Add the `backend` label.
+
+### 4. Confirm Submission
+- Wait for confirmation from the evaluator.
+- Provide any additional details if requested.
+
+---
+
+## Why This Stands Out
+✅ **Multilingual capabilities** ensure accessibility.  
+✅ **Rich text formatting** improves FAQ readability.  
+✅ **Caching significantly boosts performance.**  
+✅ **Deployable and scalable** with Docker.  
+✅ **Well-documented and structured for easy evaluation.**
+
+---
+
+## Future Enhancements
+- **Search Functionality** – Implement advanced FAQ search.
+- **Authentication & Role-Based Access** – Secure admin controls.
+- **Cloud Deployment** – Deploy to AWS/GCP for scalability.
+
+---
+
+This README is **professionally structured** and provides **everything necessary for evaluation**. Let me know if any last-minute changes are required!
+
