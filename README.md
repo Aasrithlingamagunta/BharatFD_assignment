@@ -103,6 +103,9 @@ GET /api/faqs/?lang=bn
 - **Available at:** `http://127.0.0.1:8000/faq/`
 
 ---
+![Screenshot 2025-02-02 105518](https://github.com/user-attachments/assets/bbbe6cd2-7018-4071-8e73-04c711b08348)
+![Screenshot 2025-02-02 154029](https://github.com/user-attachments/assets/4ca1901c-636b-42d8-9520-3ef8f51c5d55)
+
 
 ## Deployment with Docker
 To deploy using **Docker**, run:
