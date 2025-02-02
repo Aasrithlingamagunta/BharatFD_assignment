@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive FAQ API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 30px;
+        }
+        input, select, button {
+            padding: 10px;
+            margin: 10px;
+        }
+        .faq-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+        }
+        h3 {
+            color: #333;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+    <script>
+        function fetchFAQ() {
+            const lang = document.getElementById("language").value;
+
+            fetch(`/api/faqs/?lang=${lang}`)
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById("faq-container");
+                    container.innerHTML = "";
+                    data.faqs.forEach(faq => {
+                        container.innerHTML += `<div class='faq-item'>
+                            <h3>${faq.question}</h3>
+                            <p>${faq.answer}</p>
+                        </div>`;
+                    });
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    document.getElementById("faq-container").innerHTML = "<p class='error'>Error fetching data.</p>";
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>Interactive FAQ API</h1>
+    <select id="language">
+        <option value="en">English</option>
+        <option value="hi">Hindi</option>
+        <option value="bn">Bengali</option>
+    </select>
+    <button onclick="fetchFAQ()">Fetch FAQs</button>
+
+    <div id="faq-container"></div>
+</body>
+</html>

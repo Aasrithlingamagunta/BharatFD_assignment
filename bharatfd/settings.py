@@ -85,10 +85,19 @@ CKEDITOR_CONFIGS = {
 #         "LOCATION": "",
 #     }
 # }
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+#         "LOCATION": "faq_cache",
+#     }
+# }
 CACHES = {
     "default": {
-        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-        "LOCATION": "faq_cache",
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
     }
 }
 
@@ -100,7 +109,7 @@ ROOT_URLCONF = 'bharatfd.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "faq/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

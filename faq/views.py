@@ -1,27 +1,35 @@
+from django.shortcuts import render
+from django.http import JsonResponse
 from django.core.cache import cache
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 from .models import FAQ
 from .serializers import FAQSerializer
 
 
-@api_view(["GET"])
 def get_faqs(request):
+    """
+    Fetch FAQs with caching.
+    """
     lang = request.GET.get("lang", "en")
-    cache_key = f"faqs_{lang}"
-    cached_data = cache.get(cache_key)
 
+    cached_data = cache.get(f"faqs_{lang}")
     if cached_data:
-        return Response(cached_data)
+        return JsonResponse({"faqs": cached_data})
 
     faqs = FAQ.objects.all()
-    data = [
+    faq_data = [
         {
             "question": faq.get_translated_question(lang),
-            "answer": faq.answer,
-            "created_at": faq.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+            "answer": faq.answer
         }
         for faq in faqs
     ]
-    cache.set(cache_key, data, timeout=300)
-    return Response(data)
+
+    cache.set(f"faqs_{lang}", faq_data, timeout=600)
+    return JsonResponse({"faqs": faq_data})
+
+
+def interactive_faq_view(request):
+    """
+    Interactive FAQ Web Page.
+    """
+    return render(request, "faq/interactive.html")

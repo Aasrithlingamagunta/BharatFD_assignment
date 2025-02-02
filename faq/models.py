@@ -4,13 +4,11 @@ from googletrans import Translator
 
 translator = Translator()
 
-
 class FAQ(models.Model):
     question = models.TextField()
     answer = RichTextField()
     question_hi = models.TextField(blank=True, null=True)  # Hindi Translation
     question_bn = models.TextField(blank=True, null=True)  # Bengali Translation
-    created_at = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
         """
@@ -23,11 +21,10 @@ class FAQ(models.Model):
                 self.question_bn = translator.translate(self.question, dest='bn').text
         super().save(*args, **kwargs)
 
-    def get_translated_question(self, lang='en'):
-        """Returns the translated question based on the language parameter."""
+    def get_translated_question(self, lang="en"):
         translations = {
-            'hi': self.question_hi,
-            'bn': self.question_bn,
+            "hi": self.question_hi,
+            "bn": self.question_bn,
         }
         return translations.get(lang, self.question)  # Default to English
 
